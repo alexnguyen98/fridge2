@@ -1,17 +1,28 @@
 export type RootStackParamList = {
-  Root: undefined;
+  Tabs: undefined;
   NotFound: undefined;
+  Shopping: undefined;
 };
 
 export type BottomTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  Cart: undefined;
+  Scan: undefined;
+  Favourites: undefined;
 };
 
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+export type CartParamList = {
+  Cart: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type ScanParamList = {
+  Scan: undefined;
+};
+
+export type FavouritesParamList = {
+  Favourites: undefined;
+};
+
+export type ShoppingStackParamList = {
+  Checkout: undefined;
+  Payment: undefined;
 };
