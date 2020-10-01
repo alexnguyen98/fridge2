@@ -15,11 +15,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.applifting.fridge2",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.applifting.fridge2"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

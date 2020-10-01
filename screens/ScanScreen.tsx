@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Dimensions, Text, View, StyleSheet } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { BarCodeEvent } from "expo-barcode-scanner";
+import { BarCodeScannerResult } from "expo-barcode-scanner";
 import Frame from "../components/scanScreen/Frame";
 import Modal from "../components/scanScreen/Modal";
+
+const finderWidth: number = 280;
+const finderHeight: number = 230;
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
+const viewMinX = (width - finderWidth) / 2;
+const viewMinY = (height - finderHeight) / 2;
 
 const ScanScreen: React.FC = () => {
   const [hasPermission, setHasPermission] = useState(false);
@@ -16,8 +23,20 @@ const ScanScreen: React.FC = () => {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }: BarCodeEvent) => {
-    setScanned(data);
+  const handleBarCodeScanned = (scanningResult: BarCodeScannerResult) => {
+    const { type, data, bounds: { origin } = {} } = scanningResult;
+
+    // @ts-ignore
+    const { x, y } = origin;
+
+    if (
+      x >= viewMinX &&
+      y >= viewMinY &&
+      x <= viewMinX + finderWidth / 2 &&
+      y <= viewMinY + finderHeight / 2
+    ) {
+      setScanned(data);
+    }
   };
 
   if (hasPermission === null) {
